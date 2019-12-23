@@ -1,0 +1,272 @@
+<div class="view-content-sidemargin" layout="column">
+  <md-content class="md-content-selector" layout="row">
+
+    <div  layout="column" class="container-chart-box" ng-cloak md-whiteframe="1" ng-controller="BarCtrl">
+      <md-toolbar class="btm-border" md-force-height="'65px'">
+        <div class="md-toolbar-tools" flex class="">
+          <div class="canvas-header">
+            <h4>Daily Visitors</h4>
+            <div class="canvas-buttons">
+              <md-select ng-model="month" placeholder="Month" class="md-no-underline">
+                <md-option value="January">January</md-option>
+                <md-option value="February">February</md-option>
+                <md-option value="March">March</md-option>
+                <md-option value="April">April</md-option>
+              </md-select>
+              <md-select ng-model="year" placeholder="Year" class="md-no-underline">
+                <md-option value="2019">2019</md-option>
+                <md-option value="2018">2018</md-option>
+                <md-option value="2017">2017</md-option>
+                <md-option value="2016">2016</md-option>
+              </md-select>
+            </div>
+          </div>
+        </div>
+      </md-toolbar>
+      <md-content flex  class="bg-white">
+        <div class="canvas-graph">
+          <canvas id="bar" class="chart chart-bar"
+          chart-data="data"
+          chart-labels="labels"
+          chart-series="series"
+          chart-options="options"
+          chart-dataset-override="datasetOverride"
+          height="97"
+          width="768"
+          responsive="true">
+        </canvas>
+      </div>
+    </md-content>
+
+  </div>
+</md-content>
+
+
+
+<div class="wrapper-cards">
+
+  <div class="card" ng-controller="LineCtrlOne" md-whiteframe="1">
+    <div class="card-content">
+      <div class="title-stats">
+        <h6 class="chart-header-title">REAL-TIME USERS</h6>
+        <h1>56</h1>
+        <h5 class="trending-text-up">+9.8% &nbsp<i class="material-icons md-18">
+          trending_up
+        </i></h5>
+      </div>
+      <canvas id="line-1" class="chart chart-line"
+      chart-data="data"
+      chart-labels="labels"
+      chart-series="series"
+      chart-options="options"
+      chart-dataset-override="datasetOverride"
+      <!-- chart-colors="colors" -->
+      responsive="true"
+      height="50px"
+      width="120px"
+      chart-click="onClick">
+    </canvas>
+  </div>
+</div>
+
+<div class="card" ng-controller="LineCtrlTwo" md-whiteframe="1">
+  <div class="card-content">
+    <div class="title-stats">
+      <h6 class="chart-header-title">TOTAL VISITORS</h6>
+      <h1>54,598</h1>
+      <h5 class="trending-text-down">-11.9% &nbsp<i class="material-icons md-18">
+        trending_down
+      </i></h5>
+    </div>
+    <canvas id="line-1" class="chart chart-line"
+    chart-data="data"
+    chart-labels="labels"
+    chart-series="series"
+    chart-options="options"
+    chart-dataset-override="datasetOverride"
+    responsive="true"
+    height="50px"
+    width="100px"
+    chart-click="onClick">
+  </canvas>
+</div>
+</div>
+
+<div class="card" ng-controller="LineCtrlThree" md-whiteframe="1">
+  <div class="card-content">
+    <div class="title-stats">
+      <h6 class="chart-header-title">BOUNCE RATE</h6>
+      <h1>73.67%</h1>
+      <h5 class="trending-text-up">+12.2% &nbsp<i class="material-icons md-18">
+        trending_up
+      </i></h5>
+    </div>
+    <canvas id="line-1" class="chart chart-line"
+    chart-data="data"
+    chart-labels="labels"
+    chart-series="series"
+    chart-options="options"
+    chart-dataset-override="datasetOverride"
+    responsive="true"
+    height="50"
+    width="100"
+    chart-click="onClick">
+  </canvas>
+</div>
+</div>
+
+<div class="card" ng-controller="LineCtrlFour" md-whiteframe="1">
+  <div class="card-content">
+    <div class="title-stats">
+      <h6 class="chart-header-title">VISIT DURATION</h6>
+      <h1>1m 4s</h1>
+      <h5 class="trending-text-up">+19.6% &nbsp<i class="material-icons md-18">
+        trending_up
+      </i></h5>
+    </div>
+    <canvas id="line-1" class="chart chart-line"
+    chart-data="data"
+    chart-labels="labels"
+    chart-series="series"
+    chart-options="options"
+    chart-dataset-override="datasetOverride"
+    responsive="true"
+    height="50"
+    width="100"
+    chart-click="onClick">
+  </canvas>
+</div>
+</div>
+
+<!-- cards row div ends here  -->
+</div>
+
+<!-- flex: 1; -->
+<div layout="row" ng-cloak class="most-visited-page-row">
+  <div class="visited-page-stats" ng-controller="pagesController"  md-whiteframe="1">
+    <md-toolbar class="btm-border">
+      <div class="md-toolbar-tools" style="color: black; font-weight: bolder; padding: 0px 32px;">
+        <h4 class="md-flex">Most Visited Pages</h4>
+      </div>
+    </md-toolbar>
+
+    <md-content flex class="white-flexRow">
+      <div class="pagename-layout-container">
+        <div class="md-flex social-media-title btm-border">PAGE NAME</div>
+        <div class="list-mostVisitedPages">
+          <ul>
+            <li ng-repeat="page in pages">{{page.pathDirectory}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="linkIcon-layout-container">
+        <div class="md-flex social-media-title btm-border">&nbsp</div>
+        <div class="list-mostVisitedPages">
+          <ul>
+            <li ng-repeat="page in pages"><a href="#"><i class="material-icons md-18 center-icons">{{page.linkIcon}}</i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pageVisitor-layout-container">
+        <div class="md-flex social-media-title btm-border">VISITORS</div>
+        <div class="list-mostVisitedPages">
+          <ul>
+            <li ng-repeat="page in pages">{{ page.visitor | number}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="uniquePageVisit-layout-container">
+        <div class="md-flex social-media-title btm-border">UNIQUE PAGE VISITS</div>
+        <div class="list-mostVisitedPages">
+          <ul>
+            <li ng-repeat="page in pages">{{page.uniquePageVisit | number}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bounceRate-layout-container">
+        <div class="md-flex social-media-title btm-border">BOUNCE RATE</div>
+        <div class="list-mostVisitedPages">
+          <ul>
+            <li ng-repeat="page in pages" style="display: flex; padding: 8px 32px; align-items: center;">{{ page.bounceRate}}&nbsp%
+              <div class=""
+              ng-controller="LineCtrlBounceRate"
+              style="height: 32px;
+              width: 100px;
+              margin: 0px 16px;
+              position: relative;
+              top: 8px;
+              ">
+              <canvas id="line-01" class="chart chart-line"
+              chart-data="data"
+              chart-labels="labels"
+              chart-series="series"
+              chart-options="options"
+              chart-dataset-override="datasetOverride"
+              responsive="true"
+              height="10"
+              width="30"
+              chart-click="onClick">
+            </canvas>
+            </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </md-content>
+  </div>
+
+  <div class="social-traffic" ng-controller="platformController"  md-whiteframe="1">
+    <md-toolbar class="btm-border">
+      <div class="md-toolbar-tools" style="color: black; font-weight: bolder; padding: 0px 32px;">
+        <h4 class="md-flex">Social Media Traffic</h4>
+      </div>
+    </md-toolbar>
+
+    <md-content flex class="white-flexRow">
+
+        <div class="network-layout-container">
+          <div class="md-flex social-media-title btm-border">NETWORK</div>
+          <div class="list-social-platform">
+            <ul>
+              <li ng-repeat="platform in platforms">{{platform.platformTitle}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="social-layout-container">
+          <div class="md-flex social-media-title btm-border">VISITORS</div>
+          <div class="list-social-platform">
+            <ul>
+              <li ng-repeat="platform in platforms">{{platform.visitor | number}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="progressbar-layout-container">
+          <div class="md-flex social-media-title btm-border">&nbsp</div>
+          <div class="list-social-platform">
+            <ul>
+              <li ng-repeat="platform in platforms">
+                <div class="progress">
+                  <div class="bar" ng-style="{width:{{((platform.visitor / platform.goal) * 100)}} + '%'}">
+                    <!-- show calculated percentage if total amount visitor is <= 100% -->
+                    <!-- <span class="percent" ng-show="((platform.visitor / platform.goal) * 100) <= 100">{{((platform.visitor / platform.goal) * 100) | number:0}}%</span> -->
+                    <!-- show maximum percentage if total amount visitor is > 100% -->
+                    <span class="percent" ng-show="((platform.visitor / platform.goal) * 100) > 100">100%</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+
+
+
+
+    </md-content>
+  </div>
+
+</div>
+
+<!-- closing div for the 1st outermost div of view -->
+</div>
