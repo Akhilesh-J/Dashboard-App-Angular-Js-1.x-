@@ -226,7 +226,7 @@ md-sidenav ul{
   font-weight: 600;
   align-content: center;
   box-sizing: border-box;
-  line-height: 24px;
+  line-height: 18px;
 }
 
 
@@ -262,7 +262,7 @@ md-content ul li span .subicon-openstate{
   cursor: pointer;
   color: grey;
   position: absolute;
-  padding: 4px 0px;
+  /* padding: 4px 0px; */
   right: 40px;
 }
 
@@ -286,7 +286,7 @@ md-content .navigation .item a{
 /* li style of submenuitems in nav */
 md-content .navigation .submenu .subItem{
   border: none;
-  padding: 8px 0px;
+  padding: 12px 0px;
   font-size: 14px;
   font-weight: 300;
 }
