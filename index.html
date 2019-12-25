@@ -22,35 +22,40 @@
   <script src="lib\angular-chart.js"></script>
   <script src="lib\angular-chart.min.js" ></script>
 
+  <!-- AngularJS Material Javascript external version 1.1.20 used here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.20/angular-material.min.js"></script>
+  <!-- AngularJS Material Dependencies -->
+  <script src="lib\angular-animate.min.js"></script>
+  <script src="lib\angular-aria.min.js"></script>
+  <script src="lib\angular-messages.min.js"></script>
+
   <!-- AngularJS Material CSS stylesheet external version 1.1.20 used here -->
   <link rel="stylesheet" href="lib\angular-material.min.css" type="text/css">
 
 </head>
 <body ng-controller="NavigationController" ng-cloak>
   <!-- Html content goes here -->
-  <div layout="row" style="height:100%;" ng-cloak>
-    <!-- changed row to coulmn for the header of title &  translation -->
-    <section layout="row" flex>
+  <div style="height:100% ;width: 100%" layout="row" ng-cloak>
+
+    <!-- sidenav goes here  -->
+    <div class="sidenav-container" style="display: flex; flex-direction: column; width: 320px; height: 100%;" >
+      <!-- actual sidenav starts here -->
       <md-sidenav
       class="md-sidenav-left"
       md-component-id="left"
-      md-is-locked-open="$mdMedia('min-width: 1440px')"
+      md-is-locked-open="$mdMedia('min-width: 1028px')"
       >
-      <!-- navbar box-shadow to right is whiteframe default 4dp above -->
+      <!-- sidenav home icon -->
       <md-toolbar class="btm-border" md-force-height="'64px'">
-        <div class="md-toolbar-tools">
-          <!-- ripple color for testing #FF0000  right-now it uses soft-ripple color and not the platinum one-->
-          <md-button md-ink-ripple="#ebeef4" aria-label="home-button" id="home-icon">
-            <a ng-href="#!/" style="margin:auto; display: flex">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin:auto;">
-                <path fill="none" d="M0 0h24v24H0V0z"/>
-                <path id="path" d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
-              </svg>
-            </a>
-          </md-button>
-        </div>
+        <md-button md-ink-ripple="#ebeef4" aria-label="home-button" id="home-icon">
+          <a ng-href="#!/" style="margin:auto; display: flex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="margin:auto;">
+              <path fill="none" d="M0 0h24v24H0V0z"/>
+              <path id="path" d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+            </svg>
+          </a>
+        </md-button>
       </md-toolbar>
-
 
       <div layout="row" layout-align="center center" class="btm-border">
         <div class="profile-margin-padding">
@@ -64,127 +69,133 @@
             </svg>
           </md-button>
 
-            <div layout="row">
-              <div style="display: flex;">
-                <h4 class="btm-margin">Martha Smithereen</h4>
-                &nbsp&nbsp
-                <div id="Status-Icon"></div>
-              </div>
+          <div layout="row">
+            <div style="display: flex;">
+              <h4 class="btm-margin">Martha Smithereen</h4>
+              &nbsp&nbsp
+              <div id="Status-Icon"></div>
             </div>
-            <div id="User-Status">Developer</div>
           </div>
+          <div id="User-Status">Developer</div>
         </div>
+      </div>
 
-        <!-- main navbar with submenu -->
-        <md-content layout-padding>
-          <div style="padding: 0px 16px;">
-            <!-- <div ng-model="states.activeItem"></div> -->
-            <ul class="navigation">
-              <div class="" layout="column">
-                <!-- ng-class="{'active': item.id == states.activeItem}" -->
-                 <!-- ; itemClicked = !itemClicked; add to toggle element -->
-                    <li md-ink-ripple="#ebeef4"
-                     ng-repeat="item in items"
-                      class="item {{item.id}}"
-                        ng-click="states.activeItem=item.title;
-                         toggleSubNav(item);
-                         ">
-                      <span>
-                        <i class="material-icons md-18 center-icons">{{item.icon}}</i>
-                      </span>
-                      <a class="title" ng-href="#!{{item.route}}">{{item.title}}</a>
-                      <span>
-                        <!-- {{item.subicon}} inside i tag -->
-                        <i ng-class="icon" class="material-icons md-18 subicon-openstate" id="test-icons" ng-class="{'active': itemClicked = !itemClicked}">{{item.subicon}}</i>
-                      </span>
-                      <!-- buggy working condition ng-if="itemClicked && states.activeItem === item.title && item.subItems"-->
-                      <ul class="submenu" id="submenu-item-hover" ng-if="itemClicked && states.activeItem == item.title && item.subItems" >
-                        <li ng-repeat="subItem in item.subItems" class="subItem">
-                          <!-- ng-href="#!{{subItem.subroute}}" -->
-                          <a href="#!{{subItem.subroute}}">{{subItem.title}}</a>
-                        </li>
-                      </ul>
-                    </li>
-                </div>
+      <!-- main navbar with submenu -->
+      <md-content layout-padding>
+        <div style="padding: 0px 16px;">
+          <!-- <div ng-model="states.activeItem"></div> -->
+          <ul class="navigation">
+            <div class="" layout="column">
+              <!-- ng-class="{'active': item.id == states.activeItem}" -->
+              <!-- ; itemClicked = !itemClicked; add to toggle element -->
+              <li md-ink-ripple="#ebeef4"
+              ng-repeat="item in items"
+              class="item {{item.id}}"
+              ng-click="states.activeItem=item.title;
+              toggleSubNav(item);
+              ">
+              <span>
+                <i class="material-icons md-18 center-icons">{{item.icon}}</i>
+              </span>
+              <a class="title" ng-href="#!{{item.route}}">{{item.title}}</a>
+              <span>
+                <!-- {{item.subicon}} inside i tag -->
+                <i ng-class="icon" class="material-icons md-18 subicon-openstate" id="test-icons" ng-class="{'active': itemClicked = !itemClicked}">{{item.subicon}}</i>
+              </span>
+              <!-- buggy working condition ng-if="itemClicked && states.activeItem === item.title && item.subItems"-->
+              <ul class="submenu" id="submenu-item-hover" ng-if="itemClicked && states.activeItem == item.title && item.subItems" >
+                <li ng-repeat="subItem in item.subItems" class="subItem">
+                  <!-- ng-href="#!{{subItem.subroute}}" -->
+                  <a href="#!{{subItem.subroute}}">{{subItem.title}}</a>
+                </li>
               </ul>
-            </div>
-          </md-content>
-
-
-          <!-- recently viewed content goes here -->
-          <md-content layout-padding>
-            <h5 class="viewed-title">RECENTLY VIEWED</h5>
-            <div layout="row" layout-padding class="viewed-content">
-              <h5 id="viewed-text">Overall Performance</h5>
-              <div class="div-span-arrow-icons">
-                <span class="span-arrow-icons">
-                  <i class="material-icons arrow-icons md-18">arrow_right_alt</i>
-                </span>
-              </div>
-            </div>
-            <div layout="row" layout-padding class="viewed-content">
-              <h5 id="viewed-text">Invoice #940</h5>
-              <div class="div-span-arrow-icons">
-                <span>
-                  <i class="material-icons arrow-icons md-18">arrow_right_alt</i>
-                </span class="span-arrow-icons">
-              </div>
-            </div>
-            <div layout="row" layout-padding class="viewed-content">
-              <h5 id="viewed-text">Customer: Minerva Viewer</h5>
-              <div class="div-span-arrow-icons">
-                <span class="span-arrow-icons">
-                  <i class="material-icons arrow-icons md-18">arrow_right_alt</i>
-                </span>
-              </div>
-            </div>
-          </md-content>
-
-          <!-- footer btm fixed page details -->
-          <!--  -->
-            <div class="footer-top-border">
-              <h5 class="page-url">Page: dribble.com/janlosert</h5>
-              <h5 class="page-number">575940-1811</h5>
-            </div>
-
-
-        <!-- SIDENAV ENDS HERE  -->
-        </md-sidenav>
-
-
-      <!-- header content with binding NAV TITLE & TRANSLATION SELECT BUTTON -->
-      <md-content class="wrapper-mainview" >
-        <div class="header-buttons-text btm-border">
-          <h3 layout-margin class="active-title">{{states.activeItem}}</h3>
-          <div class="lang-container">
-            <!-- <md-button class="md-raised">Button</md-button> -->
-            <md-select ng-model="lang" placeholder="Launguage" class="md-no-underline language-button">
-              <md-option value="ENG"><img class="flag" ng-src="icons\united-states.svg" alt="" height="24px" width="24px">ENG</md-option>
-              <md-option value="JPN"><img class="flag" ng-src="icons\japan.svg" alt="" height="24px" width="24px">JPN</md-option>
-              <md-option value="GER"><img class="flag" ng-src="icons\germany.svg" alt="" height="24px" width="24px">GER</md-option>
-              <md-option value="FRA"><img class="flag" ng-src="icons\france.svg" alt="" height="24px" width="24px">FRA</md-option>
-            </md-select>
+            </li>
           </div>
-        </div>
-        <!-- style="flex: 1" fpr the mainview -->
-        <section class="grey-bg-mainview" >
-          <div  layout="column" class="wrapper-ng-view" ng-view>
-            <!-- this is the view where you can see different pages  -->
-          </div>
-        </section>
+        </ul>
       </div>
     </md-content>
 
-  </section>
+
+    <!-- recently viewed content goes here -->
+    <md-content layout-padding>
+      <h5 class="viewed-title">RECENTLY VIEWED</h5>
+      <div layout="row" layout-padding class="viewed-content">
+        <h5 id="viewed-text">Overall Performance</h5>
+        <div class="div-span-arrow-icons">
+          <span class="span-arrow-icons">
+            <i class="material-icons arrow-icons md-18">arrow_right_alt</i>
+          </span>
+        </div>
+      </div>
+      <div layout="row" layout-padding class="viewed-content">
+        <h5 id="viewed-text">Invoice #940</h5>
+        <div class="div-span-arrow-icons">
+          <span>
+            <i class="material-icons arrow-icons md-18">arrow_right_alt</i>
+          </span class="span-arrow-icons">
+        </div>
+      </div>
+      <div layout="row" layout-padding class="viewed-content">
+        <h5 id="viewed-text">Customer: Minerva Viewer</h5>
+        <div class="div-span-arrow-icons">
+          <span class="span-arrow-icons">
+            <i class="material-icons arrow-icons md-18">arrow_right_alt</i>
+          </span>
+        </div>
+      </div>
+    </md-content>
+
+    <!-- footer btm fixed page details -->
+    <!--  -->
+    <div class="footer-top-border">
+      <h5 class="page-url">Page: dribble.com/janlosert</h5>
+      <h5 class="page-number">575940-1811</h5>
+    </div>
+
+    <!-- SIDENAV ENDS HERE  -->
+  </md-sidenav>
+  <!-- sidenav container -->
+</div>
 
 
-<!-- AngularJS Material Javascript external version 1.1.20 used here -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.20/angular-material.min.js"></script>
-<!-- AngularJS Material Dependencies -->
-<script src="lib\angular-animate.min.js"></script>
-<script src="lib\angular-aria.min.js"></script>
-<script src="lib\angular-messages.min.js"></script>
+<div class="header-view-container">
+  <!-- header with home icon and tilte/translation -->
+  <!-- view title and translation header -->
+  <div class="" >
+    <div class="header-row">
+      <div class="header-buttons-text btm-border">
+        <h3 layout-margin class="active-title">{{states.activeItem}}</h3>
+        <div class="lang-container">
+          <md-select ng-model="lang" placeholder="Launguage" class="md-no-underline language-button">
+            <md-option value="ENG"><img class="flag" ng-src="icons\united-states.svg" alt="" height="24px" width="24px">ENG</md-option>
+            <md-option value="JPN"><img class="flag" ng-src="icons\japan.svg" alt="" height="24px" width="24px">JPN</md-option>
+            <md-option value="GER"><img class="flag" ng-src="icons\germany.svg" alt="" height="24px" width="24px">GER</md-option>
+            <md-option value="FRA"><img class="flag" ng-src="icons\france.svg" alt="" height="24px" width="24px">FRA</md-option>
+          </md-select>
+        </div>
+      </div>
+    </div>
+  </div>
 
+
+
+  <!-- this is the part below header where the view goes with 100% width -->
+  <div class="content-column" ng-view>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- outermost div inside body -->
+</div>
 
 </body>
 </html>

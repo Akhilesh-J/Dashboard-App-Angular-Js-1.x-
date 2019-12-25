@@ -113,6 +113,16 @@ app.controller('NavigationController', function ($scope) {
 
 });
 
+
+
+  // Optional configuration
+app.config(['ChartJsProvider', function (ChartJsProvider) {
+    // Configure all charts
+    ChartJsProvider.setOptions({
+      responsive: true
+    });
+  }])
+
 //canvas tyoe - Bar on view page
 app.controller('BarCtrl', function($scope){
 
@@ -143,7 +153,7 @@ app.controller('BarCtrl', function($scope){
 
   $scope.options = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     tooltips: {
       backgroundColor: 'rgba(255,255,255)',
       titleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
